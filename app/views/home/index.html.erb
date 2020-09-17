@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>rory the cat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <style type="text/css">
+      body {
+          margin: 0;
+          padding: 5px;
+          font-family: arial, verdana, tahoma, sans-serif;
+          font-size: 14px;
+      }
+
+      #rory {
+          margin: 10px;
+          border: 2px solid #ccc;
+          max-width: 70%;
+          max-height: 80%;
+          border-radius: 3px;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+      }
+
+      @media only screen and (max-width: 500px) {
+          #rory {
+              max-width: 95%;
+              max-height: 95%;
+          }
+      }
+  </style>
+  <!-- Bootstrap (4.3.1) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+
+<div class="container text-light">
+
+  <div class="row" style="height: 100%">
+    <div class="col-sm-4">
+      <h1>Random Rory</h1>
+      <p>Rory ID: <%= @image['id'] %></p>
+      <p>Total Rorys: <%= @total %></p>
+    </div>
+    <div class="col">
+      <a href="<%= @image['url'] %>"><img src="<%= @image['url'] %>" alt="rory" title="rory" id="rory"/></a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
