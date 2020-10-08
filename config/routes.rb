@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'id/:id', to: 'home#by_id'
   get 'purr', to: 'api#random_image'
   get 'purr/:id', to: 'api#image_by_id'
+  post 'new', to: 'api#add_rory'
 end
