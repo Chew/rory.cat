@@ -23,5 +23,7 @@ class ApiController < ApplicationController
     end
 
     Image.create(url: params['url'])
+
+    json_response({success: true}, 200)
   end
 end
