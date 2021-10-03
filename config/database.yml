@@ -8,15 +8,15 @@ default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   encoding: utf8mb4
-  username: <%= Rails.application.credentials[:db_username] %>
-  password: <%= Rails.application.credentials[:db_pass] %>
-  host: <%= Rails.application.credentials[:db_host] %>
   port: 3306
   timeout: 5000
 
 development:
   <<: *default
   database: rory_dev
+  host: 127.0.0.1
+  username: <%= Rails.application.credentials.db.dev[:username] %>
+  password: <%= Rails.application.credentials.db.dev[:password] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,3 +28,6 @@ test:
 production:
   <<: *default
   database: rory_prod
+  host: <%= Rails.application.credentials.db.prod[:host] %>
+  username: <%= Rails.application.credentials.db.prod[:username] %>
+  password: <%= Rails.application.credentials.db.prod[:password] %>
