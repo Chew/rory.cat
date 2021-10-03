@@ -15,8 +15,8 @@ development:
   <<: *default
   database: rory_dev
   host: 127.0.0.1
-  username: <%= Rails.application.credentials.db.dev[:username] %>
-  password: <%= Rails.application.credentials.db.dev[:password] %>
+  username: <%= Rails.application.credentials.db[:dev][:username] %>
+  password: <%= Rails.application.credentials.db[:dev][:password] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,6 +28,6 @@ test:
 production:
   <<: *default
   database: rory_prod
-  host: <%= Rails.application.credentials.db.prod[:host] %>
-  username: <%= Rails.application.credentials.db.prod[:username] %>
-  password: <%= Rails.application.credentials.db.prod[:password] %>
+  host: <%= Rails.application.credentials.db[:prod][:host] %>
+  username: <%= Rails.application.credentials.db[:prod][:username] %>
+  password: <%= Rails.application.credentials.db[:prod][:password] %>
