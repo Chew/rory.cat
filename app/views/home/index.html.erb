@@ -1,28 +1,30 @@
 <% content_for :meta_tags do %>
-  <meta property="og:url" content="<%= request.url %>" />
   <meta property="og:image:secure_url" content="<%= @image['url'] %>">
   <meta property="og:image" content="<%= @image['url'] %>" />
-  <meta property="og:image:alt" content="a picture of rory the cat" />
-  <meta property="og:description" content="the one stop spot for all things rory" />
-  <meta name="description" content="the one stop spot for all things rory!" itemprop="description">
-  <meta property="article:author" content="Chew">
-  <meta name="keywords" content="rory cat" itemprop="keywords">
-  <meta name="medium" content="image" />
   <meta property="twitter:image" content="<%= @image['url'] %>">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="og:title" content="rory the cat!" />
-  <meta property="twitter:title" content="rory the cat" />
 <% end %>
 
 <div class="row" style="height: 100%">
-  <div class="col-sm-4">
+  <div class="col-md-4">
     <h1>Random Rory</h1>
+    <p><a href="/">New Rory</a></p>
     <p>Rory ID: <%= @image['id'] %></p>
     <p>Total Rorys: <%= @total %></p>
-    <p><a href="/purr">Rory REST API</a></p>
-    <p><a href="https://discord.gg/jTggjT2" target="_blank">Rory Simping Discord Server</a></p>
+    <p><%= link_to "Rory REST API", "/purr" %></p>
+    <p><%= link_to_fanclub 'discord' %></p>
+    <p id="requireHTTPS" class="hidden">
+      <b>STOP!</b> This page <b>must</b> be served over HTTPS.
+      Please <a>reload this page via HTTPS</a>.
+    </p>
+
+    <!-- Install button, hidden by default -->
+    <div id="installContainer" class="hidden">
+      <button id="butInstall" type="button" class="btn btn-primary btn-sm">
+        Install as App
+      </button>
+    </div>
   </div>
   <div class="col">
-    <a href="<%= @image['url'] %>"><img src="<%= @image['url'] %>" alt="rory" title="rory" id="rory"/></a>
+    <a href="/id/<%= @image['id'] %>"><img src="<%= @image['url'] %>" alt="rory" title="rory" id="rory"/></a>
   </div>
 </div>
