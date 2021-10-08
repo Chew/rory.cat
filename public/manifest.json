@@ -4,7 +4,7 @@
  "description": "the one stop spot for all things rory!",
  "start_url": "/",
  "background_color": "#212529",
- "display": "standalone",
+ "display": "minimal-ui",
  "scope": "/",
  "theme_color": "#d1ae86",
  "icons": [
