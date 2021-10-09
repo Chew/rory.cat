@@ -1,6 +1,12 @@
 class ApiController < ApplicationController
   include Response
   skip_before_action :verify_authenticity_token
+  before_action :set_cors
+
+  # Allow API to be accessed from any origin
+  def set_cors
+    response.headers['Access-Control-Allow-Origin'] = '*'
+  end
 
   def random_image
     image = Image.order(Arel.sql('RAND()')).first
