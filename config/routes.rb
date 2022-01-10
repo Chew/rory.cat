@@ -12,4 +12,7 @@ Rails.application.routes.draw do
 
   # PWA
   get 'offline', to: 'home#offline'
+
+  # Sitemap
+  get 'sitemap.xml', to: 'application#sitemap', defaults: { format: 'xml' }
 end
