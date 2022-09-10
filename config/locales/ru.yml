@@ -1,0 +1,14 @@
+ru:
+  random_rory: "Случайный Рори"
+  new_rory: "Новый Рори"
+  rory_id: "ID Рори: %{id}"
+  rory_rest_api: "REST API Рори"
+  fanclub:
+    discord: "Дискорд фан-клуб Рори"
+  total_rorys: "Общее количество Рори: %{total}"
+  install_as_app: "Установить приложение"
+  you_are_offline: "Вы не в сети!"
+  rory_online_only: "Наслаждаться Рори можно только в режиме онлайн."
+  rory_by_id: "Рори по ID"
+  rory_rest_api_random: "REST API Рори (случайно)"
+  rory_rest_api_this: "REST API Рори (данный Рори)"

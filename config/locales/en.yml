@@ -30,4 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  random_rory: "Random Rory"
+  new_rory: "New Rory"
+  rory_id: "Rory ID %{id}"
+  rory_rest_api: "Rory REST API"
+  fanclub:
+    discord: Rory Fanclub Discord Server
+  total_rorys: "Total Rorys: %{total}"
+  install_as_app: "Install as App"
+  you_are_offline: "You are offline!"
+  rory_online_only: "Rory can only be enjoyed online."
+  rory_by_id: "Rory By ID"
+  rory_rest_api_random: "Rory REST API (random)"
+  rory_rest_api_this: "Rory REST API (this Rory)"

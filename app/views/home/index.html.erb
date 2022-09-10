@@ -6,11 +6,11 @@
 
 <div class="row" style="height: 100%">
   <div class="col-md-4">
-    <h1>Random Rory</h1>
-    <p><a href="/">New Rory</a></p>
-    <p>Rory ID: <%= @image['id'] %></p>
-    <p>Total Rorys: <%= @total %></p>
-    <p><%= link_to "Rory REST API", "/purr" %></p>
+    <h1><%= t('random_rory') %></h1>
+    <p><a href="/"><%= t('new_rory') %></a></p>
+    <p><%= t('rory_id', id: @image['id']) %></p>
+    <p><%= t('total_rorys', total: @total) %></p>
+    <p><%= link_to t('rory_rest_api'), "/purr" %></p>
     <p><%= link_to_fanclub 'discord' %></p>
     <p id="requireHTTPS" class="hidden">
       <b>STOP!</b> This page <b>must</b> be served over HTTPS.
@@ -20,7 +20,7 @@
     <!-- Install button, hidden by default -->
     <div id="installContainer" class="hidden">
       <button id="butInstall" type="button" class="btn btn-primary btn-sm">
-        Install as App
+        <%= t('install_as_app') %>
       </button>
     </div>
   </div>

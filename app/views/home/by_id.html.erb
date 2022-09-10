@@ -6,12 +6,12 @@
 
 <div class="row" style="height: 100%">
   <div class="col-sm-4">
-    <h1>Rory By ID</h1>
-    <p><a href="/">Random Rory</a></p>
-    <p>Rory ID: <%= @image['id'] %></p>
-    <p>Total Rorys: <%= @total %></p>
-    <p><%= link_to "Rory REST API (random)", "/purr" %></p>
-    <p><%= link_to "Rory REST API (this Rory)", "/purr/#{@image['id']}" %></p>
+    <h1><%= t('rory_by_id') %></h1>
+    <p><a href="/"><%= t('random_rory') %></a></p>
+    <p><%= t('rory_id', id: @image['id']) %></p>
+    <p><%= t('total_rorys', total: @total) %></p>
+    <p><%= link_to t('rory_rest_api_random'), "/purr" %></p>
+    <p><%= link_to t('rory_rest_api_this'), "/purr/#{@image['id']}" %></p>
     <p><%= link_to_fanclub 'discord' %></p>
   </div>
   <div class="col">
