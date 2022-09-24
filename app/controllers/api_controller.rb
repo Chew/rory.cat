@@ -29,10 +29,11 @@ class ApiController < ApplicationController
     end
 
     Aws.config.update(
-      region: 'us-east-2',
+      endpoint: "https://#{Rails.application.credentials.dig(:r2, :bucket_id)}.r2.cloudflarestorage.com",
+      region: 'auto',
       credentials: Aws::Credentials.new(
-        Rails.application.credentials.dig(:aws, :access_key_id),
-        Rails.application.credentials.dig(:aws, :secret_access_key)
+        Rails.application.credentials.dig(:r2, :access_key),
+        Rails.application.credentials.dig(:r2, :secret_key)
       )
     )
 
@@ -46,9 +47,8 @@ class ApiController < ApplicationController
     name = string + extension.to_s
 
     s3.put_object(
-      bucket: 'rory.cat',
+      bucket: 'rorycat',
       body: image.body,
-      acl: 'public-read',
       key: name,
       content_type: type
     )
