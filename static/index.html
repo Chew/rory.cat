@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>rory the cat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+    <meta property="og:image:alt" content="a picture of rory the cat" />
+    <meta property="og:description" content="the one stop spot for all things rory" />
+    <meta name="description" content="the one stop spot for all things rory!" itemprop="description">
+    <meta property="article:author" content="Chew">
+    <meta name="keywords" content="rory cat" itemprop="keywords">
+    <meta name="medium" content="image" />
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="rory the cat!" />
+    <meta property="twitter:title" content="rory the cat" />
+    <meta property="og:url" content="{{ request.url }}" />
+    <meta name="msapplication-TileColor" content="#d1ae86">
+    <meta name="theme-color" content="#d1ae86">
+
+<!--    <%# Apple Icons, a lot of them apparently %>-->
+<!--    <% [57, 60, 72, 76, 114, 144, 152, 180].each do |i| %>-->
+<!--    <%= tag.link rel: 'apple-touch-icon', sizes: "#{i}x#{i}", href: "/apple-icon-#{i}x#{i}.png" %>-->
+<!--    <% end %>-->
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+    <link rel="manifest" href="/manifest.json">
+
+<!--    <%= stylesheet_link_tag 'application' %>-->
+    <link rel="stylesheet" href="static/assets/application.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<!--    <%= yield :meta_tags %>-->
+</head>
+<body class="bg-dark">
+<div class="container text-light">
+    <div class="row" style="height: 100%">
+        <div class="col-md-4">
+            <h1>Random Rory</h1>
+            <p><a href="/">New Rory</a></p>
+            <p>Rory ID: {{ rory.id }}</p>
+            <p>Total Rories: {{ rory.total }}</p>
+            <p><a href="/purr">Rory Rest API</a></p>
+            <p><%= link_to_fanclub 'discord' %></p>
+            <p id="requireHTTPS" class="hidden">
+                <b>STOP!</b> This page <b>must</b> be served over HTTPS.
+                Please <a>reload this page via HTTPS</a>.
+            </p>
+
+            <!-- Install button, hidden by default -->
+            <div id="installContainer" class="hidden">
+                <button id="butInstall" type="button" class="btn btn-primary btn-sm">
+                    <%= t('install_as_app') %>
+                </button>
+            </div>
+        </div>
+        <div class="col">
+            <a href="/id/{{ rory.id }}"><img src="{{ rory.url }}" alt="rory" title="rory" id="rory"/></a>
+        </div>
+    </div>
+</div>
+
+<!--<%= javascript_pack_tag "application" %>-->
+</body>
+</html>
