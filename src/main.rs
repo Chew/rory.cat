@@ -1,23 +1,66 @@
 use actix_files::Files;
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpResponse, HttpServer};
+use diesel::{MysqlConnection, r2d2};
+use diesel::r2d2::ConnectionManager;
+use dotenv::dotenv;
 use handlebars::Handlebars;
+use rand::{Rng, thread_rng};
 use serde_json::json;
+use crate::models::image::Image;
+use crate::state::AppState;
 
-async fn index(hb: web::Data<Handlebars<'_>>) -> HttpResponse {
-    let data = json!({
-        "rory": {
-            "total": 100,
-            "id": 1,
-            "url": "https://i.rory.cat/OShcAhsR.webp"
-        }
-    });
+// Import needed macros
+#[macro_use]
+extern crate diesel;
+extern crate rand;
 
-    let body = hb.render("index", &data).unwrap();
-    HttpResponse::Ok().body(body)
+mod models;
+mod state;
+mod schema;
+
+pub type DbPool = r2d2::Pool<ConnectionManager<MysqlConnection>>;
+
+// HTML Result
+async fn index(state: web::Data<AppState>, hb: web::Data<Handlebars<'_>>) -> HttpResponse {
+    // id is a random number 1-10
+    let mut rng = thread_rng();
+
+    let conn = state.db_pool.get().unwrap();
+    let max_rories = Image::count(&conn).unwrap();
+    // Pick a random number between 1 and the max number of rories
+    let rory_id = rng.gen_range(1..max_rories);
+    let rory = Image::find_by_id(rory_id, &conn).unwrap();
+
+    match rory {
+        Some(rory) => {
+            let data = json!({
+                "rory": {
+                    "id": rory.id,
+                    "url": rory.url,
+                }
+            });
+            let body = hb.render("index", &data).unwrap();
+            HttpResponse::Ok().body(body)
+        },
+        None => HttpResponse::NotFound().body("Not found"),
+    }
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    dotenv().ok();
+
+    let db_manager = ConnectionManager::<MysqlConnection>::new(
+        std::env::var("DATABASE_URL").expect("Missing ENV")
+    );
+    let db_pool: DbPool = r2d2::Pool::builder()
+        .build(db_manager)
+        .expect("Failed to create DB pool.");
+
+    let app_state = web::Data::new(AppState {
+        db_pool: db_pool.clone()
+    });
+
     let mut handlebars = Handlebars::new();
     handlebars
         .register_templates_directory(".html", "./static/")
@@ -27,6 +70,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(handlebars_ref.clone())
+            .app_data(app_state.clone())
             .service(Files::new("/static", "static").show_files_listing())
             .route("/", web::get().to(index))}
     )

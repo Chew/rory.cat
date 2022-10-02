@@ -10,3 +10,8 @@ actix-web = "4"
 actix-files = "0.6.2"
 serde_json = "1.0.53"
 handlebars = { version = "4.1.4", features = ["dir_source"] }
+dotenv = "0.15.0"
+rand = "0.8.5"
+
+diesel = { version = "1.4.8", features = ["mysql", "r2d2"] }
+serde = { version = "1.0.144", features = ["derive"] }
