@@ -1,7 +1,14 @@
-use diesel::{MysqlConnection, OptionalExtension, Queryable, RunQueryDsl};
+use diesel::{MysqlConnection, OptionalExtension, Queryable, RunQueryDsl, sql_types};
 use serde::{Serialize, Deserialize};
 use diesel::prelude::*;
 use diesel::result::Error;
+
+no_arg_sql_function!(
+	RANDOM,
+	sql_types::Integer,
+	"Represents the SQL RANDOM() function"
+);
+
 
 #[derive(Queryable, Debug, Clone, Serialize, Deserialize)]
 pub struct Image {
@@ -33,4 +40,15 @@ impl Image {
 
         Ok(res.try_into().unwrap())
     }
+
+    // pub fn random(conn: &MysqlConnection) -> Result<Option<Image>, Error> {
+    //     use crate::schema::images::dsl::*;
+    //
+    //     let res = images
+    //         .limit(1)
+    //         .order(RANDOM)
+    //         .load::<Image>(conn)?;
+    //
+    //     Ok(res.into_iter().next())
+    // }
 }

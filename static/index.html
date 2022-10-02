@@ -22,16 +22,16 @@
 <!--    <% [57, 60, 72, 76, 114, 144, 152, 180].each do |i| %>-->
 <!--    <%= tag.link rel: 'apple-touch-icon', sizes: "#{i}x#{i}", href: "/apple-icon-#{i}x#{i}.png" %>-->
 <!--    <% end %>-->
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<!--    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">-->
+<!--    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">-->
+<!--    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">-->
+<!--    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<!--    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">-->
 
     <link rel="manifest" href="/manifest.json">
 
 <!--    <%= stylesheet_link_tag 'application' %>-->
-    <link rel="stylesheet" href="static/assets/application.css">
+    <link rel="stylesheet" href="/static/assets/application.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
@@ -40,13 +40,21 @@
 <body class="bg-dark">
 <div class="container text-light">
     <div class="row" style="height: 100%">
+        {{#if rory_exists}}
         <div class="col-md-4">
-            <h1>Random Rory</h1>
+            {{#if by_id}}
+                <h1>Rory By ID</h1>
+            {{ else }}
+                <h1>Random Rory</h1>
+            {{/if}}
             <p><a href="/">New Rory</a></p>
             <p>Rory ID: {{ rory.id }}</p>
             <p>Total Rories: {{ rory.total }}</p>
             <p><a href="/purr">Rory Rest API</a></p>
-            <p><%= link_to_fanclub 'discord' %></p>
+            {{#if by_id}}
+                <p><a href="/purr/{{ rory.id }}">Rory Rest API (this rory)</a></p>
+            {{/if}}
+            <p><a href="https://discord.gg/0kYlxgkh65QhZAjm">Rory Fanclub Discord Server</a></p>
             <p id="requireHTTPS" class="hidden">
                 <b>STOP!</b> This page <b>must</b> be served over HTTPS.
                 Please <a>reload this page via HTTPS</a>.
@@ -62,6 +70,11 @@
         <div class="col">
             <a href="/id/{{ rory.id }}"><img src="{{ rory.url }}" alt="rory" title="rory" id="rory"/></a>
         </div>
+        {{else}}
+        <div class="col-md-12">
+            <p>this rory does not exist :(</p>
+        </div>
+        {{/if}}
     </div>
 </div>
 
