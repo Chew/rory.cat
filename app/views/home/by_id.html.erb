@@ -12,9 +12,10 @@
     <p><%= t('total_rorys', total: @total) %></p>
     <p><%= link_to t('rory_rest_api_random'), "/purr" %></p>
     <p><%= link_to t('rory_rest_api_this'), "/purr/#{@image['id']}" %></p>
+    <p><%= link_to t('about'), "https://chew.wiki/view/Rory" %></p>
     <p><%= link_to_fanclub 'discord' %></p>
   </div>
   <div class="col">
-    <img src="<%= @image['url'] %>" alt="rory" title="rory" id="rory"/>
+    <img src="<%= @image['url'] %>" alt="rory <%= @image['id'] %>" title="rory" id="rory"/>
   </div>
 </div>

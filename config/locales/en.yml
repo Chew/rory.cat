@@ -33,6 +33,7 @@ en:
   random_rory: "Random Rory"
   new_rory: "New Rory"
   rory_id: "Rory ID %{id}"
+  about: "About Rory"
   rory_rest_api: "Rory REST API"
   fanclub:
     discord: Rory Fanclub Discord Server
