@@ -39,6 +39,8 @@ class ApiController < ApplicationController
 
     image = RestClient.get(params['rory'])
     extension = ".#{params['rory'].split('.')[-1]}"
+    # we want everything before the ?
+    extension = extension.split('?')[0]
 
     s3 = Aws::S3::Client.new
     type = image.headers[:content_type]
